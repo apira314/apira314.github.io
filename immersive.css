@@ -1,0 +1,106 @@
+/* Shared play frame: toolbar, scoreboard, canvas and input dock never overlap. */
+.game-shell .stage{position:relative;min-width:0!important;min-height:0!important;margin:0 auto;overflow:hidden}
+.game-shell .stage canvas{display:block;width:100%!important;height:auto!important;max-height:none!important;touch-action:none;user-select:none;-webkit-user-select:none}
+.game-shell .gamebar{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding:6px 0;margin:8px auto;max-width:1200px}
+.game-shell .gamebar>button{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.game-shell .gamebar svg{width:21px;height:21px}.gamebar .control-symbol{font-size:20px}
+.game-shell .gamebar #pick-level[aria-pressed=true]{background:#def174!important;color:#163235!important;border-color:#def174!important;box-shadow:inset 0 -3px 0 #8ca139}
+.game-shell .score-rail{display:flex;justify-content:center;gap:clamp(8px,3vw,28px);flex-wrap:nowrap!important;padding:7px 12px!important;margin:0 auto 8px!important;max-width:100%!important;border-radius:12px;background:#102b3beb;position:static;min-width:0}
+.game-shell .score-rail .stat{min-width:0!important;text-align:center;flex:0 1 auto}.game-shell .score-rail small{font-size:10px!important;letter-spacing:.3px!important;white-space:nowrap}.game-shell .score-rail strong{font-size:clamp(16px,3vw,23px)!important;white-space:nowrap;line-height:1.2}
+.game-shell .menu-stats{display:flex!important;position:static!important;flex-wrap:wrap!important;margin:18px 0!important;max-width:none!important;padding:12px!important;gap:15px!important;pointer-events:auto!important}.menu-stats .stat{flex:1;min-width:60px}.menu-stats strong{font-size:21px!important}
+.game-shell .control-dock{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;max-width:1100px;margin:10px auto;padding:0 6px;position:relative;z-index:30}
+.game-shell .control-dock>div{position:static!important;transform:none!important;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:0!important;max-width:100%!important;width:auto!important;padding:0;pointer-events:auto!important}
+.game-shell .control-dock button{flex:0 1 auto!important;min-height:46px!important;min-width:46px!important;padding:9px 16px!important;border-radius:13px!important;touch-action:none;font-size:14px;line-height:1.2;white-space:nowrap}
+.game-shell .control-dock .touch button{width:clamp(72px,19vw,115px)!important;font-size:26px!important;background:#193c4b;border-color:#6b989e;color:#ecfffb}
+.game-shell .control-dock .touch button:active,.game-shell .control-dock .pad button:active{background:#92e4bd;color:#102b32;transform:translateY(2px)}
+.game-shell .control-dock .pad{display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:44px 44px;gap:4px}.game-shell .control-dock .pad button{padding:4px!important;min-height:44px!important;height:44px;font-size:24px;grid-row:2;grid-column:auto}.game-shell .control-dock .pad [data-dir=up]{grid-column:2;grid-row:1}.game-shell .control-dock .pad [data-dir=left]{grid-column:1}.game-shell .control-dock .pad [data-dir=down]{grid-column:2}.game-shell .control-dock .pad [data-dir=right]{grid-column:3}
+.game-shell .control-dock .dash-controls span,.game-shell .control-dock #accuracy{display:none!important}
+.game-shell .control-dock .water-actions{flex-wrap:wrap}.game-shell .control-dock .water-tools{position:relative}.game-shell .control-dock .water-tools>div{position:absolute;bottom:calc(100% + 8px);right:0;z-index:50;background:#133340;border:1px solid #527b83;border-radius:12px;padding:12px;min-width:230px;box-shadow:0 12px 35px #0008}
+.game-shell .control-dock #map-controls{background:#15313e;padding:7px;border-radius:13px;gap:6px}.game-shell #map-controls label{font-size:12px}.game-shell #map-controls select{max-width:min(240px,45vw);min-height:44px;font-size:14px}
+.game-shell .control-dock [hidden],.game-shell .control-dock>div[hidden]{display:none!important}
+html[data-device=desktop] .game-shell .control-dock>.touch,html[data-device=desktop] .game-shell .control-dock>.pad,html[data-device=desktop] .game-shell .control-dock>.rain-controls,html[data-device=desktop] .game-shell .control-dock>.dash-controls,html[data-device=desktop] .dino-controls{display:none!important}
+html[data-device=phone] .game-shell .control-dock>.touch{display:flex!important}
+.game-shell .control-dock:empty{display:none}
+/* Fullscreen reserves measured rails instead of positioning buttons on top of scores. */
+.game-shell.is-fullscreen{display:flex!important;flex-direction:column;align-items:stretch;justify-content:center;gap:0!important;max-width:none!important;width:100%!important;height:100dvh!important;margin:0!important;padding:var(--frame-top,64px) 4px var(--frame-bottom,64px)!important;overflow:hidden!important;background:#06131d;box-sizing:border-box}
+.game-shell.is-fullscreen .site-nav,.game-shell.is-fullscreen .fullscreen-nav{display:none!important}
+.game-shell.is-fullscreen .gamebar{position:absolute!important;top:max(4px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));left:8px;width:auto!important;max-width:none!important;justify-content:flex-end;flex-wrap:nowrap!important;gap:6px!important;margin:0!important;padding:0!important;z-index:45;background:transparent!important;backdrop-filter:none}
+.game-shell.is-fullscreen .gamebar .shell-title{margin-right:auto;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:30vw}
+.game-shell.is-fullscreen .gamebar>button{width:44px!important;max-width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;padding:10px!important;margin:0!important;font-size:0!important;border-radius:12px;background:#173543;border:1px solid #607c87;color:#e3f4f5;gap:0!important}
+.game-shell.is-fullscreen .gamebar>button>span{display:none!important}.game-shell.is-fullscreen .gamebar>button svg{display:block!important}.game-shell.is-fullscreen #pause:after{content:'Ⅱ';font-size:22px}.game-shell.is-fullscreen #pick-level:after{content:'▦';font-size:25px}.game-shell.is-fullscreen #open-menu{background:#92e4bd;color:#102b32}
+.game-shell.is-fullscreen #play-tools>summary{min-height:44px!important;padding:10px!important;max-width:110px;font-size:12px;white-space:nowrap;background:#173543}.game-shell.is-fullscreen #play-tools .play-tools-panel{position:fixed;top:56px;right:8px;max-height:calc(100dvh - 72px)}
+.game-shell.is-fullscreen .score-rail{position:absolute!important;top:var(--rail-top,58px)!important;left:50%!important;right:auto!important;transform:translateX(-50%);width:max-content!important;max-width:calc(100% - 16px)!important;z-index:22;padding:4px 12px!important;gap:20px!important;margin:0!important;background:#102b3b}
+.game-shell.is-fullscreen .score-rail small{font-size:9px!important}.game-shell.is-fullscreen .score-rail strong{font-size:16px!important}
+.game-shell.is-fullscreen .compact,.game-shell.is-fullscreen .water-board,.game-shell.is-fullscreen .jump-layout,.game-shell.is-fullscreen .jump-play,.game-shell.is-fullscreen .drill-layout>div:first-child{max-width:none!important;width:100%!important;margin:0!important;display:block!important}
+.game-shell.is-fullscreen .stage{width:var(--play-width)!important;max-width:100%!important;min-height:0!important;min-width:0!important;margin:0 auto!important;border-radius:8px;flex:none}
+.game-shell.is-fullscreen .control-dock{position:absolute!important;left:0;right:0;bottom:max(4px,env(safe-area-inset-bottom));width:100%!important;max-width:none!important;margin:0!important;gap:6px;z-index:30;padding:0 6px}
+.game-shell.is-fullscreen .control-dock button{min-height:44px!important;height:44px;padding:6px 12px!important;font-size:12px}.game-shell.is-fullscreen .control-dock .touch button{font-size:24px!important}
+.game-shell.is-fullscreen :is(.dash-heading,.jump-heading,.dash-progress,.expedition-status,.dino-route,.dino-location,.status,.drill-guide,.dash-now,.water-selection,.zone-panel,.mobile-drill-status){display:none!important}
+.game-shell.is-fullscreen>.small,.game-shell.is-fullscreen>.label,.game-shell.is-fullscreen>h1,.game-shell.is-fullscreen>.intro{display:none!important}
+.game-shell .stage:has(>#overlay:not([hidden])) .dino-controls{display:none!important}
+.game-shell.is-fullscreen:has(#level-select:not([hidden])){overflow-y:auto!important;justify-content:flex-start;padding:60px 12px 12px!important}
+.game-shell.is-fullscreen .overlay{padding:clamp(8px,2vw,22px)!important;overflow:auto}.game-shell .overlay .panel{max-height:100%;overflow:auto;overscroll-behavior:contain}.game-shell.is-fullscreen .panel h2{font-size:clamp(22px,4vw,36px);margin:8px 0}.game-shell.is-fullscreen .panel p{font-size:clamp(12px,1.8vw,15px);line-height:1.45;margin:8px 0}.game-shell.is-fullscreen .panel .small{font-size:11px}
+/* Paleo uses the canvas halves for walking. Only the jump button stays on the field. */
+.dino-page .dino-controls{position:absolute!important;bottom:12px;left:12px;right:auto!important;z-index:15;display:flex!important;gap:8px;margin:0!important;pointer-events:none;width:auto!important}
+.dino-page .dino-controls button{pointer-events:auto;min-width:60px!important;min-height:48px!important;padding:10px 18px!important;border-radius:16px;background:#173d4ad9}
+.dino-page .dino-controls #jump{margin:0!important;flex:0 0 auto!important;min-width:85px!important;background:#d8efa7df;color:#173235;font-size:17px!important;box-shadow:0 3px 0 #06182155}
+html[data-device=phone] .dino-page .dino-controls #left,html[data-device=phone] .dino-page .dino-controls #right{display:none!important}.dino-page .is-atlas .dino-controls{display:none!important}
+.jump-page .jump-layout{display:block;max-width:760px;margin:auto}.jump-page .stage{width:100%;max-width:min(760px,calc((100dvh - 180px)*var(--game-ratio,.8)))}.jump-page #announcement{min-height:0;margin:0}.jump-page .jump-notebook{display:block!important;max-height:none!important;margin-top:18px}
+html[data-device=phone] .game-shell:not(.is-fullscreen){padding-left:8px!important;padding-right:8px!important}html[data-device=phone] .game-shell:not(.is-fullscreen) .stage{max-width:100%}
+html[data-device=phone] .game-shell .gamebar .shell-title{font-size:13px}
+@media(max-width:600px){.game-shell .gamebar{gap:6px}.game-shell .gamebar>button{padding:8px 11px;font-size:12px}.game-shell .gamebar .shell-title{display:none}.game-shell .control-dock{gap:6px}.game-shell .control-dock button{padding:8px 12px!important}.game-shell .score-rail{gap:14px}.game-shell .score-rail small{font-size:9px!important}.game-shell .score-rail strong{font-size:17px!important}.game-shell #map-controls label{display:none}.game-shell #map-controls select{max-width:150px}.game-shell #map-controls button{font-size:12px}.game-shell .stage>.overlay .panel{padding:14px}.game-shell .panel h2{font-size:29px}.game-shell .panel p{font-size:14px}.jump-page .gamebar{margin-bottom:6px}.jump-page .game-shell:not(.is-fullscreen) .stage{max-width:min(100%,calc((100dvh - 170px)*var(--game-ratio,.8)))}}
+@media(max-height:550px) and (orientation:landscape){.game-shell.is-fullscreen .gamebar>button{height:36px!important;min-height:36px!important;min-width:40px!important;width:40px!important;padding:7px!important}.game-shell.is-fullscreen #play-tools>summary{min-height:36px!important;padding:7px!important}.game-shell.is-fullscreen .score-rail{padding:2px 10px!important;gap:18px!important}.game-shell.is-fullscreen .score-rail .stat{display:flex;align-items:center;gap:7px}.game-shell.is-fullscreen .score-rail strong{font-size:14px!important}.game-shell.is-fullscreen .control-dock .pad{display:flex!important}.game-shell.is-fullscreen .control-dock button{height:40px;min-height:40px!important}.game-shell.is-fullscreen .panel{padding:9px!important}.game-shell.is-fullscreen .panel h2{font-size:24px}.game-shell.is-fullscreen .panel p{font-size:12px}.game-shell.is-fullscreen .panel .small{display:none}.game-shell.is-fullscreen .panel .primary{padding:8px 15px;min-height:38px}.game-shell.is-fullscreen #map-controls{padding:0}.dino-page .dino-controls #jump{min-height:44px!important;padding:7px 13px!important}}
+.game-shell:has(#overlay:not([hidden])) .control-dock>:not(#map-controls){visibility:hidden}
+.game-shell:has(#level-select:not([hidden])) .control-dock{display:none!important}
+.game-shell .control-dock .abilities button,.game-shell .control-dock .water-actions button{touch-action:manipulation}
+.game-shell .gamebar .compact-secondary[hidden]{display:none!important}
+
+.jump-page #game{aspect-ratio:auto!important}
+
+/* Stats must wrap by content, also after they move into the narrow dialog. */
+.game-shell #game-menu .menu-stats{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr))!important;gap:18px!important;width:100%!important;box-sizing:border-box}
+.game-shell #game-menu .menu-stats>div{min-width:0!important;width:auto!important;flex:none!important}
+.game-shell #game-menu .menu-stats strong{display:block!important;font-size:clamp(18px,4vw,23px)!important;line-height:1.35!important;white-space:normal!important;overflow-wrap:anywhere}
+
+/* Earth Jump: two generous steering zones across the phone viewport. */
+html[data-device=phone] .jump-page .game-shell .control-dock>.touch{width:100%!important;max-width:none!important;flex:1 1 100%;flex-wrap:nowrap;gap:10px}
+html[data-device=phone] .jump-page .game-shell .control-dock>.touch button{flex:1 1 0!important;width:0!important;max-width:none!important;min-height:58px!important;font-size:22px!important;user-select:none;-webkit-user-select:none}
+html[data-device=phone] .jump-page .game-shell.is-fullscreen .control-dock>.touch button{min-height:48px!important;height:48px;background:#193c4beb}
+
+/* Direct-play controls. Settings stay accessible without shrinking the canvas. */
+.dash-page .control-dock,.flight-page .control-dock,.drill-page .control-dock,.dino-page .control-dock{display:none!important}
+.dash-page .game-shell,.flight-page .game-shell{max-width:1440px!important}
+.dash-page .stage,.flight-page .stage{width:100%!important;max-width:none!important}
+.dash-page #game,.flight-page #game{max-height:none!important;width:100%!important}
+.flight-action-zone{position:absolute;right:12px;bottom:12px;display:flex;gap:8px;z-index:18}
+.flight-action-zone button{min-width:48px;min-height:44px;padding:8px 12px;border:1px solid #aed9d180;border-radius:12px;background:#143742dd;color:#e3fff5;font-size:13px;touch-action:manipulation}
+.stage:has(>#overlay:not([hidden])) .flight-action-zone{display:none}
+.controls-on-stage .stage>.gamebar{position:absolute!important;top:8px!important;right:8px!important;left:auto!important;width:auto!important;margin:0!important;z-index:25;gap:5px!important;background:transparent!important;display:flex!important;flex-wrap:nowrap!important}
+.controls-on-stage .stage>.gamebar .shell-title{display:none}
+.controls-on-stage .stage>.gamebar>button{width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;padding:8px!important;border-radius:10px!important;background:#153541dc;backdrop-filter:blur(6px);font-size:0!important}
+.controls-on-stage .stage>.gamebar>button>span{display:none!important}
+.controls-on-stage .stage>.gamebar>button svg{display:block!important}
+.controls-on-stage .stage>.gamebar #pause:after{content:'Ⅱ';font-size:20px}
+.controls-on-stage .stage>.gamebar #map-music{width:auto!important;font-size:12px!important;padding:8px!important}
+html[data-device=phone] .magma-page .game-shell .control-dock>.touch{width:100%!important;flex:1 1 100%;flex-wrap:nowrap;gap:10px}
+html[data-device=phone] .magma-page .game-shell .control-dock>.touch button{width:0!important;flex:1 1 0!important;min-height:54px!important}
+html[data-device=phone] :is(.dash-page,.flight-page,.drill-page,.dino-page) .game-shell:has(#overlay[hidden]):not(:has(dialog[open])):not(:has(#level-select:not([hidden]))){touch-action:none}
+
+.corner-readout{position:absolute;left:10px;top:10px;padding:6px 10px;border-radius:9px;background:#0d2638c9;color:#e9fff5;font:600 12px system-ui;z-index:15;pointer-events:none}.corner-readout[hidden]{display:none}
+html[data-device=phone] .flight-action-zone{right:8px;bottom:8px;gap:6px}html[data-device=phone] .flight-action-zone button{font-size:12px;padding:7px 9px;background:#153747cc}
+html[data-device=phone] .dino-page .stage>.gamebar{top:5px!important;right:5px!important}html[data-device=phone] .dino-page .stage>.gamebar>button{width:34px!important;min-width:34px!important;height:34px!important;min-height:34px!important;padding:6px!important}
+
+/* One fitted canvas: no cover crop, no flex shrink, including browser-toolbar changes. */
+.game-shell.is-fullscreen{--safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);height:var(--viewport-height,100dvh)!important;width:var(--viewport-width,100vw)!important;min-height:0!important}
+.game-shell.is-fullscreen .compact,.game-shell.is-fullscreen .jump-layout,.game-shell.is-fullscreen .strata-layout{flex:0 0 auto;min-height:0!important}
+.dino-page .game-shell .stage{aspect-ratio:5/3!important;height:auto!important;max-height:none!important;isolation:isolate}
+.dino-page .game-shell .stage #game{aspect-ratio:5/3!important;width:100%!important;height:auto!important;object-fit:contain;max-height:none!important}
+.dino-page .game-shell.is-fullscreen .stage{width:var(--play-width)!important;max-width:100%!important;box-sizing:border-box}
+html[data-touch=true] .dino-page .game-shell .dino-controls{display:flex!important;bottom:max(10px,env(safe-area-inset-bottom));left:max(10px,env(safe-area-inset-left));z-index:20}
+html[data-touch=true] .dino-page .game-shell .dino-controls :is(#left,#right){display:none!important}
+html[data-touch=true] .dino-page .game-shell .dino-controls #jump{display:inline-flex!important;align-items:center;justify-content:center;gap:7px;min-width:88px!important;min-height:48px!important;touch-action:none;user-select:none;background:#deefb3f2;color:#133930;border:1px solid #f4ffe0;box-shadow:0 3px 0 #07192080;font-size:16px!important}
+html[data-touch=true] .dino-page .game-shell :is(.stage:has(>#overlay:not([hidden]))) .dino-controls,html[data-touch=true] .dino-page .game-shell.is-atlas .dino-controls,html[data-touch=true] .dino-page .game-shell.is-finale .dino-controls{display:none!important}
+html[data-touch=true] .game-shell .control-dock>.touch,html[data-touch=true] .game-shell .control-dock>.pad,html[data-touch=true] .game-shell .control-dock>.rain-controls{display:flex!important}
+html[data-touch=true] :is(.jump-page,.magma-page) .game-shell .control-dock>.touch{width:100%!important;flex:1 1 100%;flex-wrap:nowrap;gap:10px}
+html[data-touch=true] :is(.jump-page,.magma-page) .game-shell .control-dock>.touch button{flex:1 1 0!important;width:0!important;max-width:none!important;min-height:48px!important}
+html[data-touch=true] :is(.dash-page,.flight-page,.drill-page,.dino-page) .game-shell:has(#overlay[hidden]):not(:has(dialog[open])):not(:has(#level-select:not([hidden]))){touch-action:none}

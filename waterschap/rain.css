@@ -1,0 +1,5 @@
+.rain-stage{background:#091f30;isolation:isolate}.rain-stage canvas{width:100%;display:block}.rain-controls{justify-content:center;touch-action:none}.rain-controls button{min-height:54px;min-width:64px}.rain-controls #rain{min-width:210px}.site-shards{position:fixed;inset:0;pointer-events:none;z-index:9999}.victory-burst main{animation:rumble .5s ease-in-out 3}@keyframes rumble{25%{transform:translate(-5px,3px)}75%{transform:translate(5px,-3px)}}@media(prefers-reduced-motion:reduce){.victory-burst main{animation:none}}
+
+.abilities{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:14px 0}.abilities button{min-height:46px}.abilities span{font-size:14px;color:#a2cbce}.abilities button:disabled{opacity:.45}
+
+.level-skip{display:block;margin:12px auto 0!important;background:#263c51;border-color:#6d889d;color:#d8eef5;font-size:14px!important}.level-skip small{display:block;font-size:12px;color:#a7c2d0}

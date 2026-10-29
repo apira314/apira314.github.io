@@ -1,0 +1,31 @@
+.field-hero{position:relative;overflow:hidden}.field-hero img{object-position:50% 53%}.field-hero .caption{background:linear-gradient(transparent,#061921c9);width:100%;padding:45px 28px 25px;left:0;bottom:0;color:#f1f7ef;line-height:1.6}.field-photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}.field-photo{margin:0;border-radius:18px;overflow:hidden;background:#fff;border:1px solid #cdd6c8;box-shadow:0 9px 32px #16322808}.field-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}.field-photo figcaption{padding:24px 26px 26px}.field-photo figcaption span,.water-field-photo figcaption>span{font-size:11px;letter-spacing:1.8px;font-weight:750;color:#527467}.field-photo h3{font-size:24px;line-height:1.2;margin:10px 0 12px;color:#19392f;letter-spacing:-.5px}.field-photo p{font-size:16px;line-height:1.65;margin:0;color:#58695e}.water-field-photo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);margin:34px 0 12px;border:1px solid #537980;border-radius:20px;overflow:hidden;background:#163641}.water-field-photo img{display:block;width:100%;height:100%;min-height:390px;max-height:540px;object-fit:cover;object-position:center 48%}.water-field-photo figcaption{padding:clamp(23px,4vw,40px);align-self:center}.water-field-photo figcaption>span{color:#b8d4aa}.water-field-photo h3{font-size:clamp(24px,3vw,32px);line-height:1.15;margin:14px 0 20px;color:#f1f5df;letter-spacing:-.6px}.water-field-photo p{font-size:16px!important;line-height:1.7;color:#c6d9d7}.water-field-photo .photo-aside{font-size:13px!important;color:#a6c5bb;padding-top:18px;border-top:1px solid #527478}@media(max-width:700px){.field-photo-grid{grid-template-columns:1fr;gap:22px;margin-top:28px}.field-photo figcaption{padding:22px}.field-photo h3{font-size:23px}.field-hero .caption{padding:38px 20px 20px;font-size:13px}.water-field-photo{grid-template-columns:1fr}.water-field-photo img{aspect-ratio:4/3;height:auto;min-height:0;max-height:none;object-position:center 52%}.water-field-photo figcaption{padding:25px}.water-field-photo h3{font-size:26px}}/* One photograph per viewport; native touch scrolling and keyboard navigation. */
+#veldbeelden .field-gallery{margin-top:28px;border:1px solid #cdd6c8;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 9px 32px #16322808}
+#veldbeelden .field-photo-grid{display:flex;gap:0;margin:0;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
+#veldbeelden .field-photo-grid::-webkit-scrollbar{display:none}
+#veldbeelden .field-photo-grid:focus-visible{outline:3px solid #527467;outline-offset:-3px}
+#veldbeelden .field-photo{flex:0 0 100%;min-width:0;border:0;border-radius:0;box-shadow:none;scroll-snap-align:start;scroll-snap-stop:always}
+#veldbeelden .field-photo a{display:block;background:#10272c}
+#veldbeelden .field-photo img{width:100%;height:clamp(260px,60vh,620px);aspect-ratio:auto;object-fit:contain}
+#veldbeelden .field-photo figcaption{padding:20px 24px 12px}
+#veldbeelden .field-photo h3{font-size:22px;margin:0 0 6px}
+#veldbeelden .field-photo p{font-size:15px;line-height:1.5}
+.field-gallery-controls{display:flex;justify-content:center;align-items:center;gap:22px;padding:14px 20px 20px}
+.field-gallery-controls button{display:grid;place-items:center;width:46px;height:46px;border:1px solid #b8c9bf;border-radius:50%;background:#edf2e8;color:#19392f;font:24px system-ui;cursor:pointer;touch-action:manipulation}
+.field-gallery-controls button:hover:not(:disabled){background:#dce8d1}
+.field-gallery-controls button:focus-visible{outline:3px solid #527467;outline-offset:3px}
+.field-gallery-controls button:disabled{opacity:.3;cursor:default}
+#field-count{font-size:14px;color:#52665b;font-variant-numeric:tabular-nums;min-width:45px;text-align:center}
+@media(max-width:700px){#veldbeelden .field-photo img{height:clamp(270px,52svh,480px)}#veldbeelden .field-photo figcaption{padding:18px 18px 8px}}
+
+#veldbeelden .field-photo video{display:block;width:100%;height:clamp(260px,60vh,620px);object-fit:contain;background:#10272c}@media(max-width:700px){#veldbeelden .field-photo video{height:clamp(270px,52svh,480px)}}
+
+/* A standalone portrait film, featured immediately below the introduction. */
+.hero .film-jump{display:block;width:fit-content;margin-top:20px;color:#dceac9;font-size:15px;text-underline-offset:5px}
+.coast-film{padding:clamp(36px,6vw,78px) 6%;background:linear-gradient(125deg,#eef2e8,#dce8e2);border-bottom:1px solid #c5d4cd}
+.coast-film-layout{max-width:1120px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,430px);gap:clamp(25px,6vw,85px);align-items:center}
+.coast-film-heading .kicker{color:#557267;letter-spacing:2px}.coast-film-heading h2{font-size:clamp(38px,5.5vw,76px);line-height:1.08;letter-spacing:-2.5px;margin:20px 0}
+.coast-film-frame{width:min(100%,calc(72svh * 9 / 16));margin:0 auto;border:1px solid #acbfb3;border-radius:20px;overflow:hidden;background:#102c32;box-shadow:0 24px 65px #16372b24}
+.coast-film-frame video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#071c23}
+.coast-film-frame video:focus-visible{outline:3px solid #def174;outline-offset:-4px}
+.coast-film-frame figcaption{padding:18px 20px;color:#e4eee7;background:#163c40;font-size:14px;line-height:1.6;text-align:left}
+@media(max-width:700px){.coast-film-layout{grid-template-columns:1fr;gap:18px}.coast-film-heading h2{font-size:36px;letter-spacing:-1.3px;margin:12px 0}.coast-film-heading h2 br{display:none}.coast-film-frame{width:min(100%,calc(68svh * 9 / 16));border-radius:15px}.coast-film-frame figcaption{padding:15px 16px;font-size:13px}.coast-film{padding:32px 6% 38px}}
